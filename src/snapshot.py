@@ -14,3 +14,11 @@ def load(date: str) -> dict:
         return {}
     with open(path) as f:
         return json.load(f)
+
+def generate_snapshot() -> str:
+    from datetime import datetime
+    from src.jira_client import fetch_assigned
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H%M")
+    data = fetch_assigned()
+    save(timestamp, data)
+    return timestamp
