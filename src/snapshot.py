@@ -3,15 +3,13 @@ import os
 
 SNAPSHOT_DIR = "snapshots"
 
-
-def save(data: dict) -> None:
+def save(date: str, data: dict) -> None:
     os.makedirs(SNAPSHOT_DIR, exist_ok=True)
-    with open(os.path.join(SNAPSHOT_DIR, "today.json"), "w") as f:
+    with open(os.path.join(SNAPSHOT_DIR, f"{date}.json"), "w") as f:
         json.dump(data, f)
 
-
-def load():
-    path = os.path.join(SNAPSHOT_DIR, "today.json")
+def load(date: str) -> dict:
+    path = os.path.join(SNAPSHOT_DIR, f"{date}.json")
     if not os.path.exists(path):
         return {}
     with open(path) as f:
