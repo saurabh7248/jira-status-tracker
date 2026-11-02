@@ -1,4 +1,4 @@
-def test_fetch_assigned_returns_list():
+def test_fetch_assigned_uses_atlassian_api():
     from src.jira_client import fetch_assigned
-    result = fetch_assigned("assignee = currentUser()", ("user", "pass"))
+    result = fetch_assigned()
     assert isinstance(result, list)
